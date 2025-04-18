@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const AnomaliesPage = () => {
   const allAnomalies = getAnomalies();
   const [searchTerm, setSearchTerm] = useState('');
-  const [classFilter, setClassFilter] = useState('');
+  const [classFilter, setClassFilter] = useState('all');
 
   // Фильтрация аномалий
   const filteredAnomalies = allAnomalies.filter(anomaly => {
@@ -17,9 +17,9 @@ const AnomaliesPage = () => {
       anomaly.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
       anomaly.id.includes(searchTerm);
     
-    const matchesClass = classFilter ? 
-      anomaly.class.toLowerCase() === classFilter.toLowerCase() : 
-      true;
+    const matchesClass = classFilter === 'all' ? 
+      true : 
+      anomaly.class.toLowerCase() === classFilter.toLowerCase();
       
     return matchesSearch && matchesClass;
   });
@@ -49,7 +49,7 @@ const AnomaliesPage = () => {
                 <SelectValue placeholder="Все классы" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Все классы</SelectItem>
+                <SelectItem value="all">Все классы</SelectItem>
                 <SelectItem value="безопасный">Безопасный</SelectItem>
                 <SelectItem value="евклид">Евклид</SelectItem>
                 <SelectItem value="кетер">Кетер</SelectItem>
