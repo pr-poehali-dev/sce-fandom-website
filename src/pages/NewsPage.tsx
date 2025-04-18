@@ -2,7 +2,7 @@ import SCELayout from '@/components/SCELayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Newspaper, Calendar, User, ArrowRight } from 'lucide-react';
-import NewsItem from '@/components/NewsItem';
+import NewsCard from '@/components/NewsCard';
 
 const NewsPage = () => {
   const newsItems = [
@@ -115,7 +115,7 @@ const NewsPage = () => {
         {/* Остальные новости */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {regularNews.map(news => (
-            <NewsItem 
+            <NewsCard 
               key={news.id}
               title={news.title}
               date={news.date}
